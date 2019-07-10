@@ -91,7 +91,7 @@ function giveRole(){
         arr.forEach(element =>{
             console.log(element.id);
             var user = null;
-            element.members.forEach(member =>{
+            guild.members.forEach(member =>{
                 if(member.id == element.id){
                     user = member;
                 }
