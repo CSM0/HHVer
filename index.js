@@ -54,11 +54,20 @@ if(msg.channel.type === "dm"){
 
 
 
+    }else if(msg.content.toLowerCase().includes("!info")){
+
+        var did = /\d{18}/gi;
+        var found = msg.content.toLowerCase().match(did);
+
+        found.forEach(element =>{
+            getUser(element,msg);
+
+        });   
     }
 }
 });
 
-client.login("NTk3ODYyMDg3MjU0ODY4MDY5.XSOQyw.x6e_K9bowmkXTv8DAVu9HvN98eg");
+client.login("");
 
 
 function addActivated(userid){
@@ -103,5 +112,51 @@ function giveRole(){
 
         arr = [];
     }
+
+}
+
+
+function getUser(id,msg){
+    var final = null;
+    var request = require("request");
+
+    var options = { method: 'GET',
+    url: 'http://www.hhverification.xyz/api.php',
+    qs: 
+    { 
+        id: '597558716946055215',
+        type: 'user',
+        uid: id }
+    };
+
+    request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+     
+    if(body != ""){
+        var user = JSON.parse(body);
+
+        if(id.toLowerCase().includes(user.Id)){
+            final = user;
+            const embed = new Discord.RichEmbed()
+            .setColor('#0099ff')
+            .setAuthor('HH Info', '')
+            .addField('Username: ', user.Username)
+            .addField('Id: ', user.Id)
+            .addField('Email: ', user.Email)
+            .addField('IP: ', user.IP)
+            .addField('Valid IP: ', user.IPValid == 1 ? "Yes" : "No")
+            .addField('Connections: ', user.Connections)
+            .addField('Two Factor Authentication: ', user["2FA"])
+            .addField('Trust Rating:  ', user.Level)
+            .addField('Account Age:  ', user.Age + " Days")
+            .addField('Key Date:  ', user.KeyDate)
+            .setTimestamp()
+            .setFooter('HH Infor', '');
+            
+            msg.channel.send(embed);
+        }
+    }
+
+    });   
 
 }
