@@ -1,0 +1,24 @@
+{
+  "name": "hhverification",
+  "version": "1.0.0",
+  "description": "HH Verification bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSM0/HHVer.git"
+  },
+  "author": "CSM0 & CHAIG200",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CSM0/HHVer/issues"
+  },
+  "homepage": "https://github.com/CSM0/HHVer#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "fs": "0.0.1-security",
+    "request": "^2.88.0"
+  }
+}
